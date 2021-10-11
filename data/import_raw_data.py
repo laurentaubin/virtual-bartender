@@ -18,8 +18,8 @@ def main():
     letter_drinks = get_drinks_starting_with_letter(letter)
     drinks += letter_drinks
 
-  with open("cocktails.json", "w") as f:
-    f.write(json.dumps(drinks))
+  with open("cocktails_raw.json", "w") as f:
+    json.dump(drinks, f)
 
 if __name__ == "__main__":
   main()
