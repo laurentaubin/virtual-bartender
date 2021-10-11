@@ -1,2 +1,5 @@
 # BD volumes
 neo4j/
+
+# Virtual environment
+venv/
