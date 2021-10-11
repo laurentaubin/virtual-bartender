@@ -1,4 +1,5 @@
 import json
+import string
 
 def create_id_from_name(name: str):
   words = name.split(" ")
@@ -43,6 +44,15 @@ def main():
       ingredients = get_ingredients(cocktail)
       sanitized_cocktail = {"id": cocktail_id, "name": cocktail.get("strDrink"), "ingredients": ingredients, "instructions": cocktail.get("strInstructions"), "glass": cocktail.get("strGlass"), "thumbnail": cocktail.get("strDrinkThumb")}
       sanitized_cocktails.append(sanitized_cocktail)
+
+
+  accepted_letters = set(string.ascii_letters + string.digits + "-")
+  for cocktail in sanitized_cocktails:
+    cocktail_id = cocktail.get("id")
+    for letter in cocktail_id:
+      if letter not in accepted_letters:
+        print(letter)
+        cocktail["id"] = cocktail_id.replace(letter, "-")
 
   with open("cocktails.json", "w") as f:
     json.dump(sanitized_cocktails, f)
