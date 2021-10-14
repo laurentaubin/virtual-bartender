@@ -60,13 +60,19 @@ def import_cocktails():
 def main():
     populator = GraphPopulator(URL, USERNAME, PASSWORD)
 
+    print("Creating ingredient nodes...")
     ingredients = import_ingredients()
-    # populator.populate_ingredients(ingredients)
+    populator.populate_ingredients(ingredients)
+    print("Ingredient nodes creation complete.")
 
+    print("Creating cocktail nodes...")
     cocktails = import_cocktails()
-    # populator.populate_cocktails(cocktails)
+    populator.populate_cocktails(cocktails)
+    print("Cocktail nodes creation complete.")
 
+    print("Creating relations between ingredient and cocktail nodes...")
     populator.create_relations(cocktails)
+    print("Relations creation complete.")
 
 
 if __name__ == "__main__":
