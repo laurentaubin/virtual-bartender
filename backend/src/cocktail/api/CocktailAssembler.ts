@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
-import { Cocktail } from "src/infra/cocktail/entities/Cocktail";
-import { CocktailPreviewDto } from "./CocktailPreviewDto";
+import { Cocktail } from "src/cocktail/infra/entities/Cocktail";
+import { CocktailPreviewDto } from "./dto/CocktailPreviewDto";
 
 @Injectable()
 export class CocktailAssembler {

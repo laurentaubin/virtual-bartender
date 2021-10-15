@@ -1,11 +1,19 @@
 import { Module } from "@nestjs/common";
-import { CocktailAssembler } from "./api/cocktail/CocktailAssembler";
-import { CocktailController } from "./api/CocktailController";
-import { CocktailRepository } from "./infra/cocktail/CocktailRepository";
+import {
+  DrivineModule,
+  DrivineModuleOptions,
+} from "@liberation-data/drivine/DrivineModule";
+import { DatabaseRegistry } from "@liberation-data/drivine/connection/DatabaseRegistry";
+import { CocktailModule } from "./cocktail/CocktailModule";
 
 @Module({
-  imports: [],
-  controllers: [CocktailController],
-  providers: [CocktailRepository, CocktailAssembler],
+  imports: [
+    DrivineModule.withOptions(<DrivineModuleOptions>{
+      connectionProviders: [DatabaseRegistry.buildOrResolveFromEnv()],
+    }),
+    CocktailModule,
+  ],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}
